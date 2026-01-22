@@ -1,0 +1,13 @@
+{
+  "name": "inventory-management-frontend",
+  "version": "1.0.0",
+  "description": "Inventory Management System Frontend",
+  "scripts": {
+    "start": "npx live-server --port=3000 --open=/login.html",
+    "dev": "npx live-server --port=3000"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+

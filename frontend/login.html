@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Inventory Management System</title><!-- CSS Files -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/products.css">
+  <link rel="stylesheet" href="css/transactions.css">
+  <link rel="stylesheet" href="css/reports.css"><!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+  <style>@view-transition { navigation: auto; }</style>
+ </head>
+ <body>
+  <div class="app-container" id="app"><!-- Login Page -->
+   <div id="loginPage" class="login-page">
+    <div class="login-background">
+     <div class="gradient-orb orb-1"></div>
+     <div class="gradient-orb orb-2"></div>
+     <div class="gradient-orb orb-3"></div>
+    </div>
+    <div class="login-container">
+     <div class="login-card">
+      <div class="login-header">
+       <div class="logo-container">
+        <div class="logo-icon">
+         <svg width="60" height="60" viewbox="0 0 60 60" fill="none"><rect x="5" y="5" width="50" height="50" rx="12" fill="url(#logoGradient)" opacity="0.2" /> <path d="M20 25h20v20H20z" fill="url(#logoGradient)" /> <path d="M25 15h10v15H25z" fill="url(#logoGradient)" opacity="0.7" /> <defs>
+           <lineargradient id="logoGradient" x1="0" y1="0" x2="60" y2="60">
+            <stop offset="0%" stop-color="#6366f1" />
+            <stop offset="100%" stop-color="#8b5cf6" />
+           </lineargradient>
+          </defs>
+         </svg>
+        </div>
+       </div>
+       <h1 class="login-title">Smart Stock Inventory System</h1>
+      </div>
+      <div class="auth-tabs"><button type="button" class="auth-tab active" onclick="switchAuthTab('login')"> <span class="tab-icon">🔐</span> Login </button> <button type="button" class="auth-tab" onclick="switchAuthTab('signup')"> <span class="tab-icon">📝</span> Sign Up </button>
+      </div>
+      <div id="authMessage" class="auth-message"></div><!-- Login Form -->
+      <form id="loginForm" class="auth-form active">
+       <div class="form-group"><label for="username" class="form-label"> <span class="label-icon">👤</span> Username </label> <input type="text" id="username" class="form-input" required placeholder="Enter your username" autocomplete="username">
+       </div>
+       <div class="form-group"><label for="password" class="form-label"> <span class="label-icon">🔒</span> Password </label>
+        <div class="password-input-wrapper"><input type="password" id="password" class="form-input" required placeholder="Enter your password" autocomplete="current-password"> <button type="button" class="password-toggle" onclick="togglePassword('password')"> <span class="toggle-icon">👁️</span> </button>
+        </div>
+       </div>
+       <div class="form-group"><label for="role" class="form-label"> <span class="label-icon">🎯</span> Role </label> <select id="role" class="form-select" required> <option value="">Select your role</option> <option value="admin">👑 Admin</option> <option value="employee">👔 Employee</option> </select>
+       </div><button type="submit" class="btn btn-primary btn-large" id="loginBtn"> <span class="btn-text">Login to Dashboard</span> <span class="btn-icon">→</span> </button>
+      </form><!-- Signup Form -->
+      <form id="signupForm" class="auth-form">
+       <div class="form-group"><label for="signupUsername" class="form-label"> <span class="label-icon">👤</span> Username </label> <input type="text" id="signupUsername" class="form-input" required placeholder="Choose a username" autocomplete="username">
+       </div>
+       <div class="form-group"><label for="signupEmail" class="form-label"> <span class="label-icon">📧</span> Email Address </label> <input type="email" id="signupEmail" class="form-input" required placeholder="your.email@company.com" autocomplete="email">
+       </div>
+       <div class="form-group"><label for="signupPassword" class="form-label"> <span class="label-icon">🔒</span> Password </label>
+        <div class="password-input-wrapper"><input type="password" id="signupPassword" class="form-input" required minlength="6" placeholder="Create a strong password" autocomplete="new-password"> <button type="button" class="password-toggle" onclick="togglePassword('signupPassword')"> <span class="toggle-icon">👁️</span> </button>
+        </div>
+       </div>
+       <div class="form-group"><label for="signupRole" class="form-label"> <span class="label-icon">🎯</span> Register As </label> <select id="signupRole" class="form-select" required> <option value="">Select your role</option> <option value="admin">👑 Admin (Full Access)</option> <option value="employee">👔 Employee (Limited Access)</option> </select>
+       </div><button type="submit" class="btn btn-primary btn-large" id="signupBtn"> <span class="btn-text">Create Account</span> <span class="btn-icon">✓</span> </button>
+      </form>
+     </div>
+     <div class="login-footer">
+      <p>© Smart Inventory System. All rights reserved.</p>
+     </div>
+    </div>
+   </div><!-- Dashboard Page -->
+   <div id="dashboardPage" class="dashboard-page hidden">
+    <div class="dashboard-container"><!-- Sidebar -->
+     <aside class="sidebar">
+      <div class="sidebar-header">
+       <div class="sidebar-logo">
+        <div class="logo-icon-small">
+         <svg width="36" height="36" viewbox="0 0 60 60" fill="none"><rect x="5" y="5" width="50" height="50" rx="12" fill="url(#sidebarLogoGradient)" opacity="0.2" /> <path d="M20 25h20v20H20z" fill="url(#sidebarLogoGradient)" /> <path d="M25 15h10v15H25z" fill="url(#sidebarLogoGradient)" opacity="0.7" /> <defs>
+           <lineargradient id="sidebarLogoGradient" x1="0" y1="0" x2="60" y2="60">
+            <stop offset="0%" stop-color="#6366f1" />
+            <stop offset="100%" stop-color="#8b5cf6" />
+           </lineargradient>
+          </defs>
+         </svg>
+        </div>
+        <div class="logo-text">
+         <h2 id="sidebarTitle">Inventory System</h2>
+         <p id="userInfo">Loading...</p>
+        </div>
+       </div>
+      </div>
+      <nav class="sidebar-nav" id="sidebarNav"><!-- Navigation items will be inserted here -->
+      </nav>
+      <div class="sidebar-footer">
+       <div class="user-profile">
+        <div class="user-avatar" id="userAvatar">
+         A
+        </div>
+        <div class="user-details">
+         <p class="user-name" id="userName">Admin User</p>
+         <p class="user-role" id="userRole">Administrator</p>
+        </div>
+       </div><button class="btn btn-logout" id="logoutBtn"> <span class="btn-icon">🚪</span> <span class="btn-text">Logout</span> </button>
+      </div>
+     </aside><!-- Main Content -->
+     <main class="main-content">
+      <div class="content-wrapper" id="mainContent"><!-- Dynamic content will be loaded here -->
+      </div>
+     </main>
+    </div>
+   </div>
+  </div><!-- Product Modal -->
+  <div id="productModal" class="modal">
+   <div class="modal-overlay" onclick="closeProductModal()"></div>
+   <div class="modal-container">
+    <div class="modal-header">
+     <h2 id="productModalTitle">Add Product</h2><button class="modal-close" onclick="closeProductModal()">×</button>
+    </div>
+    <form id="productForm" class="modal-body">
+     <div class="form-row">
+      <div class="form-group"><label for="productName" class="form-label">Product Name</label> <input type="text" id="productName" class="form-input" required>
+      </div>
+      <div class="form-group"><label for="productSku" class="form-label">SKU</label> <input type="text" id="productSku" class="form-input" required>
+      </div>
+     </div>
+     <div class="form-row">
+      <div class="form-group"><label for="productCategory" class="form-label">Category</label> <select id="productCategory" class="form-select" required> <option value="">Select Category</option> <option value="Artificial Intelligence">Artificial Intelligence</option> <option value="Machine Learning">Machine Learning</option> <option value="Data Science">Data Science</option> <option value="Web Development">Web Development</option> <option value="App Development">App Development</option> </select>
+      </div>
+      <div class="form-group"><label for="productSupplier" class="form-label">Supplier</label> <input type="text" id="productSupplier" class="form-input" required>
+      </div>
+     </div>
+     <div class="form-row">
+      <div class="form-group"><label for="productPrice" class="form-label">Unit Price ($)</label> <input type="number" id="productPrice" class="form-input" step="0.01" min="0" required>
+      </div>
+      <div class="form-group"><label for="productStock" class="form-label">Current Stock</label> <input type="number" id="productStock" class="form-input" min="0" required>
+      </div>
+     </div>
+     <div class="form-group"><label for="productMinStock" class="form-label">Minimum Stock Level</label> <input type="number" id="productMinStock" class="form-input" min="0" required>
+     </div>
+     <div class="modal-footer"><button type="button" class="btn btn-secondary" onclick="closeProductModal()">Cancel</button> <button type="submit" class="btn btn-primary" id="productSubmitBtn">Save Product</button>
+     </div>
+    </form>
+   </div>
+  </div><!-- Stock Modal -->
+  <div id="stockModal" class="modal">
+   <div class="modal-overlay" onclick="closeStockModal()"></div>
+   <div class="modal-container">
+    <div class="modal-header">
+     <h2 id="stockModalTitle">Update Stock</h2><button class="modal-close" onclick="closeStockModal()">×</button>
+    </div>
+    <form id="stockForm" class="modal-body">
+     <div class="form-group"><label for="transactionType" class="form-label">Transaction Type</label> <select id="transactionType" class="form-select" required> <option value="">Select Type</option> <option value="stock-in">Stock In (Add)</option> <option value="stock-out">Stock Out (Remove)</option> </select>
+     </div>
+     <div class="form-group"><label for="stockQuantity" class="form-label">Quantity</label> <input type="number" id="stockQuantity" class="form-input" min="1" required>
+     </div>
+     <div class="form-group"><label for="stockNotes" class="form-label">Notes (Optional)</label> <textarea id="stockNotes" class="form-textarea" rows="3" placeholder="Add any notes about this transaction..."></textarea>
+     </div>
+     <div class="modal-footer"><button type="button" class="btn btn-secondary" onclick="closeStockModal()">Cancel</button> <button type="submit" class="btn btn-primary" id="stockSubmitBtn">Update Stock</button>
+     </div>
+    </form>
+   </div>
+  </div><!-- Purchase Modal -->
+  <div id="purchaseModal" class="modal">
+   <div class="modal-overlay" onclick="closePurchaseModal()"></div>
+   <div class="modal-container">
+    <div class="modal-header">
+     <h2>Purchase Product</h2><button class="modal-close" onclick="closePurchaseModal()">×</button>
+    </div>
+    <form id="purchaseForm" class="modal-body">
+     <div id="purchaseProductInfo" class="product-info-card"></div>
+     <div class="form-group"><label for="purchaseQuantity" class="form-label">Quantity to Purchase</label> <input type="number" id="purchaseQuantity" class="form-input" min="1" required oninput="updatePurchaseTotal()">
+     </div>
+     <div class="form-group"><label for="purchaseNotes" class="form-label">Purchase Notes (Optional)</label> <textarea id="purchaseNotes" class="form-textarea" rows="3" placeholder="Add notes about this purchase..."></textarea>
+     </div>
+     <div id="purchaseTotalDisplay" class="purchase-total"><strong>Total: $0.00</strong>
+     </div>
+     <div class="modal-footer"><button type="button" class="btn btn-secondary" onclick="closePurchaseModal()">Cancel</button> <button type="submit" class="btn btn-success" id="purchaseSubmitBtn">Complete Purchase</button>
+     </div>
+    </form>
+   </div>
+  </div><!-- Employee Modal -->
+  <div id="employeeModal" class="modal">
+   <div class="modal-overlay" onclick="closeEmployeeModal()"></div>
+   <div class="modal-container">
+    <div class="modal-header">
+     <h2>Add Employee</h2><button class="modal-close" onclick="closeEmployeeModal()">×</button>
+    </div>
+    <form id="employeeForm" class="modal-body">
+     <div class="form-group"><label for="empUsername" class="form-label">Username</label> <input type="text" id="empUsername" class="form-input" required>
+     </div>
+     <div class="form-group"><label for="empEmail" class="form-label">Email</label> <input type="email" id="empEmail" class="form-input" required>
+     </div>
+     <div class="form-group"><label for="empPassword" class="form-label">Password</label> <input type="password" id="empPassword" class="form-input" minlength="6" required>
+     </div>
+     <div class="modal-footer"><button type="button" class="btn btn-secondary" onclick="closeEmployeeModal()">Cancel</button> <button type="submit" class="btn btn-primary" id="employeeSubmitBtn">Add Employee</button>
+     </div>
+    </form>
+   </div>
+  </div><!-- Notification Toast -->
+  <div id="notificationToast" class="notification-toast hidden">
+   <div class="toast-icon" id="toastIcon">
+    ✓
+   </div>
+   <div class="toast-content">
+    <p class="toast-title" id="toastTitle">Success</p>
+    <p class="toast-message" id="toastMessage">Operation completed successfully</p>
+   </div><button class="toast-close" onclick="hideToast()">×</button>
+  </div><!-- Loading Overlay -->
+  <div id="loadingOverlay" class="loading-overlay hidden">
+   <div class="loading-spinner">
+    <div class="spinner-circle"></div>
+    <p class="loading-text">Processing...</p>
+   </div>
+  </div><!-- JavaScript Files -->
+  <script src="js/config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/products.js"></script>
+  <script src="js/transactions.js"></script>
+  <script src="js/reports.js"></script>
+  <script src="js/employees.js"></script>
+  <script src="js/app.js"></script>
+ <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
+   })();
+</script>
+
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c18d69a67659a99',t:'MTc2OTAxOTc2MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
